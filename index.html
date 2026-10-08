@@ -1,0 +1,717 @@
+
+
+# Read image into base64 to embed into HTML
+import base64
+
+img_path = 'Gemini_Generated_Image_ly7q7tly7q7tly7q.png'
+with open(img_path, 'rb') as f:
+    img_b64 = base64.b64encode(f.read()).decode('utf-8')
+
+html_content = f"""<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+    @page {{
+        size: A4;
+        margin: 12mm 10mm;
+        background-color: #0b0b0e;
+    }}
+    
+    *, *::before, *::after {{
+        box-sizing: border-box;
+    }}
+
+    body {{
+        margin: 0;
+        padding: 0;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        background-color: #0b0b0e;
+        color: #e0e0e0;
+        font-size: 9.5pt;
+        line-height: 1.4;
+    }}
+
+    /* Header & Navigation Bar */
+    .header-banner {{
+        background: linear-gradient(180deg, #180500 0%, #0b0b0e 100%);
+        text-align: center;
+        padding: 10px 15px;
+        border-bottom: 2px solid #ff4500;
+        margin-bottom: 15px;
+    }}
+
+    .logo-img {{
+        max-width: 280px;
+        height: auto;
+        display: block;
+        margin: 0 auto 8px auto;
+    }}
+
+    .nav-bar {{
+        background-color: #16161c;
+        border-radius: 6px;
+        padding: 8px 12px;
+        border: 1px solid #2a2a35;
+        margin-top: 10px;
+    }}
+
+    .nav-table {{
+        width: 100%;
+        border-collapse: collapse;
+    }}
+
+    .nav-item {{
+        text-align: center;
+        color: #ffb700;
+        font-weight: bold;
+        font-size: 8.5pt;
+        text-transform: uppercase;
+        padding: 4px;
+    }}
+
+    .live-bar {{
+        background: linear-gradient(90deg, #8b0000, #ff4500);
+        color: #ffffff;
+        padding: 6px 12px;
+        border-radius: 4px;
+        margin-top: 10px;
+        font-weight: bold;
+    }}
+
+    .live-table {{
+        width: 100%;
+        border-collapse: collapse;
+    }}
+
+    /* Layout Structure */
+    .section-title {{
+        color: #ffaa00;
+        font-size: 13pt;
+        font-weight: bold;
+        border-bottom: 2px solid #ff4500;
+        padding-bottom: 4px;
+        margin-top: 15px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        page-break-after: avoid;
+    }}
+
+    .grid-2col {{
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 12px;
+    }}
+
+    .col-left {{
+        width: 58%;
+        vertical-align: top;
+        padding-right: 10px;
+    }}
+
+    .col-right {{
+        width: 42%;
+        vertical-align: top;
+        padding-left: 10px;
+    }}
+
+    /* Card Containers */
+    .card {{
+        background-color: #141419;
+        border: 1px solid #282833;
+        border-radius: 6px;
+        padding: 10px 12px;
+        margin-bottom: 12px;
+    }}
+
+    .card-accent {{
+        border-left: 4px solid #ff4500;
+    }}
+
+    .card-gold {{
+        border-left: 4px solid #ffb700;
+    }}
+
+    .card-title {{
+        color: #ffffff;
+        font-size: 10.5pt;
+        font-weight: bold;
+        margin-bottom: 6px;
+    }}
+
+    .badge {{
+        background-color: #ff4500;
+        color: #ffffff;
+        font-size: 7pt;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }}
+
+    /* Buttons & External Links */
+    .btn {{
+        display: inline-block;
+        background: #22222c;
+        color: #ffb700;
+        border: 1px solid #ffb700;
+        padding: 6px 10px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 8.5pt;
+        text-align: center;
+        text-decoration: none;
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }}
+
+    .btn-primary {{
+        background: linear-gradient(135deg, #ff4500, #cc0000);
+        color: #ffffff;
+        border: none;
+    }}
+
+    /* Music Chart Table */
+    .chart-table {{
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 6px;
+    }}
+
+    .chart-table th {{
+        background-color: #1f1f28;
+        color: #ffb700;
+        padding: 6px;
+        font-size: 8.5pt;
+        text-align: left;
+        border-bottom: 1px solid #333344;
+    }}
+
+    .chart-table td {{
+        padding: 5px 6px;
+        border-bottom: 1px solid #1c1c24;
+        font-size: 8.5pt;
+    }}
+
+    .chart-rank {{
+        font-weight: bold;
+        color: #ff4500;
+        text-align: center;
+        width: 25px;
+    }}
+
+    /* Form Styling */
+    .form-group {{
+        margin-bottom: 8px;
+    }}
+
+    .form-label {{
+        display: block;
+        font-size: 8pt;
+        color: #aaaa00;
+        margin-bottom: 3px;
+    }}
+
+    .form-input {{
+        width: 100%;
+        background-color: #0b0b0e;
+        border: 1px solid #333344;
+        color: #ffffff;
+        padding: 6px;
+        border-radius: 4px;
+        font-size: 8.5pt;
+    }}
+
+    /* Footer */
+    .footer {{
+        background-color: #121217;
+        border-top: 2px solid #ff4500;
+        padding: 12px;
+        margin-top: 15px;
+        border-radius: 6px 6px 0 0;
+    }}
+
+    .footer-table {{
+        width: 100%;
+        border-collapse: collapse;
+    }}
+
+    .footer-col {{
+        vertical-align: top;
+        padding: 5px 10px;
+    }}
+
+    .footer-heading {{
+        color: #ffb700;
+        font-size: 9.5pt;
+        font-weight: bold;
+        margin-bottom: 6px;
+    }}
+
+    .text-gold {{ color: #ffb700; }}
+    .text-muted {{ color: #a0a0ab; }}
+    .text-bright {{ color: #ffffff; }}
+    .text-small {{ font-size: 8pt; }}
+</style>
+</head>
+<body>
+
+    <div class="header-banner">
+        <img src="data:image/png;base64,{img_b64}" class="logo-img" alt="La Triunfadora Radio">
+        
+        <div class="nav-bar">
+            <table class="nav-table">
+                <tr>
+                    <td class="nav-item">Inicio</td>
+                    <td class="nav-item">Programación</td>
+                    <td class="nav-item">Locutores</td>
+                    <td class="nav-item">Música</td>
+                    <td class="nav-item">Noticias</td>
+                    <td class="nav-item">Transmisiones</td>
+                    <td class="nav-item">Saludos</td>
+                    <td class="nav-item">Contacto</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="live-bar">
+            <table class="live-table">
+                <tr>
+                    <td style="text-align: left; width: 60%;">
+                        <span class="badge" style="background-color: #ffffff; color: #cc0000; margin-right: 6px;">EN VIVO</span>
+                        <strong>REPRODUCTOR EN DIRECTO:</strong> Escuchando La Triunfadora
+                    </td>
+                    <td style="text-align: right; width: 40%; font-size: 8.5pt;">
+                        🕒 Reloj Cabina: <span style="color: #ffea00;">10:45:22 AM - En Línea</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <table class="grid-2col">
+        <tr>
+            <td class="col-left">
+                
+                <div class="card card-accent">
+                    <div class="card-title">Bienvenidos a La Triunfadora</div>
+                    <p style="margin: 0; color: #cccccc;">
+                        La mejor música, las transmisiones más alegres y la compañía perfecta para toda la familia. Sintoniza nuestros programas en vivo, solicita tus canciones preferidas y mantente al día con los eventos de nuestra comunidad.
+                    </p>
+                </div>
+
+                <div class="section-title">📺 Transmisión Especial en Remoto</div>
+                <div class="card">
+                    <div style="background-color: #000000; border: 1px dashed #ff4500; height: 110px; text-align: center; border-radius: 4px; padding-top: 35px; margin-bottom: 8px;">
+                        <span style="font-size: 11pt; color: #ff4500; font-weight: bold;">[ Ventana Video Streaming / FB Live / YouTube ]</span><br>
+                        <span class="text-small text-muted">Haz clic para activar la señal en directo</span>
+                    </div>
+                    <div class="card-title" style="font-size: 9.5pt;">Cobertura Activa</div>
+                    <p class="text-small text-muted" style="margin: 0;">
+                        Cobertura en vivo de eventos comunitarios, festivales locales y transmisiones especiales fuera de cabina.
+                    </p>
+                </div>
+
+                <div class="section-title">📰 Noticias Destacadas y Actualidad</div>
+                
+                <div class="card card-gold">
+                    <div class="card-title">Gran Fiesta Anual de la Radio <span class="badge">Evento</span></div>
+                    <p class="text-small" style="margin: 0; color: #bbbbbb;">
+                        Este fin de semana celebramos junto a nuestra querida audiencia. Prepárate para una jornada llena de música en vivo, agrupaciones invitadas y grandes sorpresas para toda la familia.
+                    </p>
+                </div>
+
+                <div class="card card-accent">
+                    <div class="card-title">Estrenos Musicales de la Semana</div>
+                    <p class="text-small" style="margin: 0; color: #bbbbbb;">
+                        Revisa las nuevas producciones de regional mexicano, cumbia y música tropical que se incorporan a nuestra programación diaria. ¡Lo más nuevo ya suena en nuestra cabina!
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Transmisión Especial en Directo</div>
+                    <p class="text-small" style="margin: 0; color: #bbbbbb;">
+                        Acompaña a nuestro equipo de locutores en la gran cobertura del evento comunitario local. Conoce los detalles, entrevistas exclusivas y todo el ambiente desde el lugar de los hechos.
+                    </p>
+                </div>
+
+            </td>
+
+            <td class="col-right">
+                
+                <div class="section-title">📻 Plataformas Externas</div>
+                <div style="margin-bottom: 12px;">
+                    <div class="btn">📻 TuneIn Radio</div>
+                    <div class="btn">🌍 Radio Garden</div>
+                    <div class="btn btn-primary">📱 Descargar App Móvil</div>
+                </div>
+
+                <div class="section-title">🔥 Top 10 Éxitos de la Semana</div>
+                <div class="card" style="padding: 6px;">
+                    <table class="chart-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 10%;">#</th>
+                                <th style="width: 45%;">Canción</th>
+                                <th style="width: 25%;">Artista</th>
+                                <th style="width: 20%;">Género</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="chart-rank">1</td>
+                                <td><b>Canción 1</b></td>
+                                <td>Artista A</td>
+                                <td class="text-gold">Regional</td>
+                            </tr>
+                            <tr>
+                                <td class="chart-rank">2</td>
+                                <td><b>Canción 2</b></td>
+                                <td>Artista B</td>
+                                <td class="text-gold">Cumbia</td>
+                            </tr>
+                            <tr>
+                                <td class="chart-rank">3</td>
+                                <td><b>Canción 3</b></td>
+                                <td>Artista C</td>
+                                <td class="text-gold">Norteño</td>
+                            </tr>
+                            <tr>
+                                <td class="chart-rank">4</td>
+                                <td><b>Canción 4</b></td>
+                                <td>Artista D</td>
+                                <td class="text-gold">Ranchera</td>
+                            </tr>
+                            <tr>
+                                <td class="chart-rank">5</td>
+                                <td><b>Canción 5</b></td>
+                                <td>Artista E</td>
+                                <td class="text-gold">Balada</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="section-title">🎼 Explorador por Géneros</div>
+                <div class="card card-gold">
+                    <ul style="margin: 0; padding-left: 15px; font-size: 8.5pt;" class="text-muted">
+                        <li><strong class="text-bright">Ranchera:</strong> Voces tradicionales y el sentimiento de nuestra tierra.</li>
+                        <li><strong class="text-bright">Norteña:</strong> El ritmo del acordeón y los grandes éxitos del género.</li>
+                        <li><strong class="text-bright">Cumbia:</strong> Sabor y alegría para bailar todos los días.</li>
+                        <li><strong class="text-bright">Balada:</strong> Las canciones románticas que enamoran.</li>
+                        <li><strong class="text-bright">Mariachi:</strong> Orgullo, tradición y las mejores composiciones.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-title" style="font-size: 9pt;">Música del Recuerdo</div>
+                    <p class="text-small text-muted" style="margin: 0;">
+                        Un espacio dedicado a los grandes clásicos inolvidables de ayer y siempre.
+                    </p>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+
+    <div class="section-title">🎙️ Galería de Locutores Destacados</div>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 12px;">
+        <tr>
+            <td style="width: 50%; padding-right: 6px; vertical-align: top;">
+                <div class="card card-accent" style="height: 100%;">
+                    <div class="card-title" style="color: #ffb700;">Antonio Cuevas</div>
+                    <div class="text-small" style="margin-bottom: 4px;"><strong>Programa:</strong> El Show Internacional Un Día Más</div>
+                    <div class="text-small" style="margin-bottom: 6px; color: #ff4500;"><strong>Horario:</strong> Lunes a Viernes (8:00 AM - 12:00 PM)</div>
+                    <p class="text-small text-muted" style="margin: 0;">
+                        <strong>Trayectoria:</strong> Una amplia carrera dedicada a llevar entretenimiento, buen humor y la mejor selección musical a miles de hogares, creando momentos inolvidables en la radio.
+                    </p>
+                </div>
+            </td>
+            <td style="width: 50%; padding-left: 6px; vertical-align: top;">
+                <div class="card card-accent" style="height: 100%;">
+                    <div class="card-title" style="color: #ffb700;">Marielena Pinal Osorio</div>
+                    <div class="text-small" style="margin-bottom: 4px;"><strong>Programa:</strong> Mañanas de Fiesta y Familia</div>
+                    <div class="text-small" style="margin-bottom: 6px; color: #ff4500;"><strong>Horario:</strong> Lunes a Viernes (12:00 PM - 3:00 PM)</div>
+                    <p class="text-small text-muted" style="margin: 0;">
+                        <strong>Trayectoria:</strong> Voz cálida, cercana y entusiasta. Se encarga de compartir noticias comunitarias, dar lectura a los saludos del público y acompañar el hogar con las melodías más alegres.
+                    </p>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <table class="grid-2col">
+        <tr>
+            <td class="col-left">
+                <div class="section-title">✉️ Muro de Interacción & Saludos</div>
+                <div class="card card-gold">
+                    <div class="card-title" style="font-size: 9.5pt;">Enviar Saludo o Dedicatoria a Cabina</div>
+                    <div class="form-group">
+                        <span class="form-label">Nombre Completo:</span>
+                        <div class="form-input">Tu nombre aquí...</div>
+                    </div>
+                    <div class="form-group">
+                        <span class="form-label">Ciudad / Estado desde donde escuchas:</span>
+                        <div class="form-input">Ej. Ciudad de México / California...</div>
+                    </div>
+                    <div class="form-group">
+                        <span class="form-label">Mensaje o Canción solicitada:</span>
+                        <div class="form-input" style="height: 35px;">Escribe tu mensaje, felicitación o pedido musical aquí...</div>
+                    </div>
+                    <div class="btn btn-primary" style="display: block; margin-top: 8px;">[ ENVIAR A CABINA ]</div>
+                </div>
+            </td>
+            <td class="col-right">
+                <div class="section-title">📅 Agenda y Actividades</div>
+                <div class="card">
+                    <div class="card-title" style="font-size: 9pt; color: #ffb700;">Próximas Transmisiones en Remoto</div>
+                    <p class="text-small text-muted" style="margin: 0 0 6px 0;">
+                        <strong>Evento Comunitario:</strong> Gran Festival de la Familia<br>
+                        <strong>Ubicación:</strong> Plaza Principal Local
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-title" style="font-size: 9pt; color: #ffb700;">Cumpleaños del Mes</div>
+                    <p class="text-small text-muted" style="margin: 0;">
+                        Espacio reservado para el reconocimiento diario a los oyentes que celebran su vida junto a nosotros.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-title" style="font-size: 9pt; color: #ffb700;">Festivales y Patrocinios</div>
+                    <p class="text-small text-muted" style="margin: 0;">
+                        Consulta el calendario de actividades, bailes y festivales auspiciados por La Triunfadora.
+                    </p>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div class="footer">
+        <table class="footer-table">
+            <tr>
+                <td class="footer-col" style="width: 35%;">
+                    <div class="footer-heading">Redes Sociales Oficiales</div>
+                    <div class="text-small text-muted">
+                        🌐 [ Facebook Oficial ]<br>
+                        📱 [ WhatsApp Cabina Directa ]<br>
+                        📸 [ Instagram ]<br>
+                        📺 [ Canal de YouTube ]
+                    </div>
+                </td>
+                <td class="footer-col" style="width: 40%;">
+                    <div class="footer-heading">Contacto Directo</div>
+                    <div class="text-small text-muted">
+                        📞 <strong>Teléfono Cabina:</strong> (555) 123-4567<br>
+                        ✉️ <strong>Correo Electrónico:</strong> contacto@latriunfadora.com<br>
+                        📍 <strong>Ubicación:</strong> Cabina Principal
+                    </div>
+                </td>
+                <td class="footer-col" style="width: 25%; text-align: right;">
+                    <div class="footer-heading">LA TRIUNFADORA</div>
+                    <div class="text-small text-gold"><i>La radio que alegra tu día</i></div>
+                    <div class="text-small text-muted" style="margin-top: 8px;">© 2026 Todos los derechos reservados.</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
+"""
+
+with open('latriunfadora_pagina.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+HTML('latriunfadora_pagina.html').write_pdf('la_triunfadora_pagina_web.pdf')
+print("PDF generado correctamente.")
+
+
+
+```
+
+```text
+PDF generado correctamente.
+
+
+```
+
+Aquí tienes la plantilla y maqueta web completa para **La Triunfadora ("La Radio que Alegra tu Día")**, estructurada con un diseño profesional de alto impacto para emisoras de radio.
+
+### Archivo de la Página Web / Plantilla PDF
+
+---
+
+### Código HTML + CSS Completo (Listo para publicar o editar)
+
+Si deseas subir esta plantilla directamente a tu servidor web, copia el siguiente código y guárdalo en un archivo llamado **`index.html`**:
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LA TRIUNFADORA - La Radio que Alegra tu Día</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0b0b0e; color: #e0e0e0; line-height: 1.6; }
+        
+        /* Header & Navigation */
+        header { background: linear-gradient(180deg, #180500 0%, #0b0b0e 100%); padding: 20px 10%; text-align: center; border-bottom: 2px solid #ff4500; }
+        .logo { font-size: 2.2rem; font-weight: bold; color: #ffb700; text-transform: uppercase; letter-spacing: 2px; }
+        .slogan { font-size: 1rem; color: #ff4500; font-style: italic; margin-bottom: 15px; }
+        
+        nav { background-color: #16161c; border-radius: 8px; padding: 10px; border: 1px solid #2a2a35; }
+        nav ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        nav a { color: #ffb700; text-decoration: none; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; }
+        nav a:hover { color: #ffffff; }
+
+        .player-bar { background: linear-gradient(90deg, #8b0000, #ff4500); color: white; padding: 12px 20px; border-radius: 6px; margin-top: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .btn-live { background-color: #ffffff; color: #cc0000; padding: 6px 15px; border-radius: 20px; font-weight: bold; text-decoration: none; display: inline-block; }
+
+        /* Container & Layout */
+        .container { max-width: 1200px; margin: 20px auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+        
+        .section-title { color: #ffaa00; font-size: 1.3rem; border-bottom: 2px solid #ff4500; padding-bottom: 5px; margin: 20px 0 15px 0; text-transform: uppercase; }
+        .card { background-color: #141419; border: 1px solid #282833; border-radius: 8px; padding: 15px; margin-bottom: 15px; }
+        .card-accent { border-left: 4px solid #ff4500; }
+        .card-gold { border-left: 4px solid #ffb700; }
+
+        /* Form & Buttons */
+        .btn { display: inline-block; background: #22222c; color: #ffb700; border: 1px solid #ffb700; padding: 8px 12px; border-radius: 4px; text-decoration: none; font-weight: bold; margin: 4px 2px; }
+        .btn-primary { background: linear-gradient(135deg, #ff4500, #cc0000); color: white; border: none; }
+        input, textarea { width: 100%; background: #0b0b0e; border: 1px solid #333344; color: white; padding: 8px; border-radius: 4px; margin-bottom: 10px; }
+
+        /* Table */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #22222e; font-size: 0.9rem; }
+        th { background-color: #1a1a24; color: #ffb700; }
+
+        /* Footer */
+        footer { background-color: #121217; border-top: 2px solid #ff4500; padding: 30px 10%; margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        footer h4 { color: #ffb700; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">LA TRIUNFADORA</div>
+        <div class="slogan">La radio que alegra tu día</div>
+        
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Programación</a></li>
+                <li><a href="#">Locutores</a></li>
+                <li><a href="#">Música</a></li>
+                <li><a href="#">Noticias</a></li>
+                <li><a href="#">Transmisiones</a></li>
+                <li><a href="#">Saludos</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <div class="player-bar">
+            <div>
+                <a href="#" class="btn-live">► ESCUCHAR EN VIVO</a>
+                <span style="margin-left: 10px; font-weight: bold;">Transmitiendo en directo</span>
+            </div>
+            <div>🕒 Reloj Cabina: <span id="reloj">12:00:00 PM</span></div>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            <div class="card card-accent">
+                <h2>Bienvenidos a La Triunfadora</h2>
+                <p>La mejor música, las transmisiones más alegres y la compañía perfecta para toda la familia. Sintoniza nuestros programas en vivo, solicita tus canciones preferidas y mantente al día con los eventos de nuestra comunidad.</p>
+            </div>
+
+            <h3 class="section-title">📺 Transmisión Especial en Remoto</h3>
+            <div class="card">
+                <div style="background: #000; height: 200px; display: flex; align-items: center; justify-content: center; color: #ff4500; border: 1px dashed #ff4500;">
+                    [ Ventana de Video Streaming / Facebook Live / YouTube ]
+                </div>
+                <h4 style="margin-top: 10px;">Cobertura Activa</h4>
+                <p>Cobertura en vivo de eventos comunitarios, festivales locales y transmisiones especiales fuera de cabina.</p>
+            </div>
+
+            <h3 class="section-title">📰 Noticias Destacadas y Actualidad</h3>
+            <div class="card card-gold">
+                <h4>Gran Fiesta Anual de la Radio</h4>
+                <p>Este fin de semana celebramos junto a nuestra querida audiencia. Prepárate para una jornada llena de música en vivo, agrupaciones invitadas y grandes sorpresas para toda la familia.</p>
+            </div>
+            <div class="card card-accent">
+                <h4>Estrenos Musicales de la Semana</h4>
+                <p>Revisa las nuevas producciones de regional mexicano, cumbia y música tropical que se incorporan a nuestra programación diaria. ¡Lo más nuevo ya suena en nuestra cabina!</p>
+            </div>
+
+            <h3 class="section-title">🎙️ Galería de Locutores</h3>
+            <div class="card">
+                <h4 style="color: #ffb700;">Antonio Cuevas</h4>
+                <p><strong>Programa:</strong> El Show Internacional Un Día Más (Lun - Vie 8:00 AM - 12:00 PM)</p>
+                <p><i>Trayectoria:</i> Una amplia carrera dedicada a llevar entretenimiento, buen humor y la mejor selección musical a miles de hogares.</p>
+            </div>
+            <div class="card">
+                <h4 style="color: #ffb700;">Marielena Pinal Osorio</h4>
+                <p><strong>Programa:</strong> Mañanas de Fiesta y Familia (Lun - Vie 12:00 PM - 3:00 PM)</p>
+                <p><i>Trayectoria:</i> Voz cálida, cercana y entusiasta. Se encarga de compartir noticias comunitarias y dar lectura a los saludos del público.</p>
+            </div>
+        </main>
+
+        <aside>
+            <h3 class="section-title">📻 Sintonización Externa</h3>
+            <a href="#" class="btn">TuneIn Radio</a>
+            <a href="#" class="btn">Radio Garden</a>
+            <a href="#" class="btn btn-primary">Descargar App Móvil</a>
+
+            <h3 class="section-title">🔥 Top 10 Éxitos</h3>
+            <div class="card">
+                <table>
+                    <thead>
+                        <tr><th>#</th><th>Canción</th><th>Artista</th><th>Género</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Canción 1</td><td>Artista A</td><td>Regional</td></tr>
+                        <tr><td>2</td><td>Canción 2</td><td>Artista B</td><td>Cumbia</td></tr>
+                        <tr><td>3</td><td>Canción 3</td><td>Artista C</td><td>Norteño</td></tr>
+                        <tr><td>4</td><td>Canción 4</td><td>Artista D</td><td>Ranchera</td></tr>
+                        <tr><td>5</td><td>Canción 5</td><td>Artista E</td><td>Balada</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="section-title">✉️ Saludos a Cabina</h3>
+            <div class="card card-gold">
+                <form>
+                    <label>Nombre completo:</label>
+                    <input type="text" placeholder="Tu nombre...">
+                    <label>Ciudad / Estado:</label>
+                    <input type="text" placeholder="Desde dónde escuchas...">
+                    <label>Mensaje o Canción:</label>
+                    <textarea rows="3" placeholder="Escribe tu mensaje..."></textarea>
+                    <button type="button" class="btn btn-primary" style="width: 100%;">ENVIAR A CABINA</button>
+                </form>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <div>
+            <h4>Redes Sociales</h4>
+            <p>Facebook | WhatsApp Cabina | Instagram | YouTube</p>
+        </div>
+        <div>
+            <h4>Contacto Directo</h4>
+            <p>📞 Teléfono: (555) 123-4567<br>✉️ Email: contacto@latriunfadora.com</p>
+        </div>
+        <div>
+            <h4>LA TRIUNFADORA</h4>
+            <p>© 2026 Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+```
